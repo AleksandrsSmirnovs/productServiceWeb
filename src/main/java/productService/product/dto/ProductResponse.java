@@ -14,7 +14,7 @@ public class ProductResponse {
     private BigDecimal price;
     private BigDecimal discount;
     private String description;
-    private List<ShoppingCartResponse> shoppingCartList;
+    private List<Long> shoppingCartIdList;
     private BigDecimal actualPrice;
 
     public Long getId() {
@@ -65,12 +65,12 @@ public class ProductResponse {
         this.description = description;
     }
 
-    public List<ShoppingCartResponse> getShoppingCartList() {
-        return shoppingCartList;
+    public List<Long> getShoppingCartIdList() {
+        return shoppingCartIdList;
     }
 
-    public void setShoppingCartList(List<ShoppingCartResponse> shoppingCartList) {
-        this.shoppingCartList = shoppingCartList;
+    public void setShoppingCartIdList(List<Long> shoppingCartIdList) {
+        this.shoppingCartIdList = shoppingCartIdList;
     }
 
     public BigDecimal getActualPrice() {
@@ -92,13 +92,13 @@ public class ProductResponse {
                 Objects.equals(price, that.price) &&
                 Objects.equals(discount, that.discount) &&
                 Objects.equals(description, that.description) &&
-                Objects.equals(shoppingCartList, that.shoppingCartList) &&
+                Objects.equals(shoppingCartIdList, that.shoppingCartIdList) &&
                 Objects.equals(actualPrice, that.actualPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, category, name, price, discount, description, shoppingCartList, actualPrice);
+        return Objects.hash(id, category, name, price, discount, description, shoppingCartIdList, actualPrice);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class ProductResponse {
                 ", price=" + price +
                 ", discount=" + discount +
                 ", description='" + description + '\'' +
-                ", shoppingCartList=" + shoppingCartList +
+                ", shoppingCartIdList=" + shoppingCartIdList +
                 ", actualPrice=" + actualPrice +
                 '}';
     }

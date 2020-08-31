@@ -16,6 +16,7 @@ import productService.shoppingCart.repository.ShoppingCartRepository;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Component
@@ -59,7 +60,7 @@ public class DtoEntityConverter {
         response.setDiscount(entity.getDiscount());
         response.setCategory(entity.getCategory());
         response.setDescription(entity.getDescription());
-        response.setShoppingCartList(entity.getShoppingCarts().stream().map(this::shoppingCartToResponse).collect(Collectors.toList()));
+        response.setShoppingCartIdList(entity.getShoppingCarts().stream().map(ShoppingCartEntity::getId).collect(Collectors.toList()));
         response.setActualPrice(entity.getDiscount() == null ? entity.getPrice() : entity.getPrice().subtract(entity.getPrice().multiply(entity.getDiscount()).multiply(BigDecimal.valueOf(0.01))).setScale(2, RoundingMode.HALF_EVEN));
         return response;
     }
@@ -75,6 +76,7 @@ public class DtoEntityConverter {
     public ShoppingCartEntity ShoppingCartCreateRequestToEntity(CreateShoppingCartRequest request) {
         ShoppingCartEntity entity = new ShoppingCartEntity();
         entity.setOwnerName(request.getOwner_name());
+        entity.setProducts(new ArrayList<>());
         return entity;
     }
 
